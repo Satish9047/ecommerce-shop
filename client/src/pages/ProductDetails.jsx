@@ -4,10 +4,10 @@ import products from "../products";
 import { Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import Rating from "../components/Rating";
+
 const ProductDetails = () => {
   const { id: productId } = useParams();
   const product = products.find((p) => p._id === productId);
-  //console.log(product);
 
   return (
     <>
@@ -16,7 +16,7 @@ const ProductDetails = () => {
       </Link>
       <Row>
         <Col md={5}>
-          <Image src={product.image} alt={product.name} fluid />
+          <Image src={product.image} alt={product.name} fluid rounded />
         </Col>
         <Col md={3}>
           <ListGroup variant="flush">
@@ -24,7 +24,10 @@ const ProductDetails = () => {
               <h3>{product.name}</h3>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Rating value={product.rating} text={`${product.numReviews}`} />
+              <Rating
+                value={product.rating}
+                text={`${product.numReviews} reviews`}
+              />
             </ListGroup.Item>
             <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
             <ListGroup.Item>Description: {product.description}</ListGroup.Item>
@@ -69,12 +72,3 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
-
-// CREATE TABLE resturants (
-//     id INT,
-//     name VARCHAR(50),
-//     location VARCHAR(50),
-//     price_range INT
-// );
-
-// INSERT INTO resturants (id, name, location, price_range) values (123, "mcdonalds", "new yorks", 3);
