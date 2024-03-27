@@ -5,12 +5,21 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "start:client": "cd ../client && pnpm run dev",
+    "start:server": "nodemon index.js",
+    "pre": "concurrently \"pnpm run start:client\" \"pnpm run start:server\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "nodemon": "^3.1.0"
   }
 }
