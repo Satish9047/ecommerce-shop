@@ -3,9 +3,11 @@ import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
 import products from "./data/products.js";
+import connectMongoDB from "./config/mongoDB.js";
 
-
+connectMongoDB();
 const app = express();
+
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true
