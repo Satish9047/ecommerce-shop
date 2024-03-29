@@ -4,7 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 
 import connectMongoDB from "./config/mongoDB.js";
-import productRouter from "./Routes/product.js";
+import productRouter from "./routes/product.js";
 
 connectMongoDB();
 const app = express();
