@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
+    "dev": "nodemon src/index.js",
     "start:client": "cd ../client && pnpm run dev",
-    "start:server": "nodemon index.js",
+    "start:server": "nodemon src/index.js",
     "pre": "concurrently \"pnpm run start:client\" \"pnpm run start:server\"",
     "data:import": "node src/seeder.js",
     "data:destory": "node src/seeder.js -d"
