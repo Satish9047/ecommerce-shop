@@ -5,7 +5,7 @@ import morgan from "morgan";
 
 import connectMongoDB from "./config/mongoDB.js";
 import productRouter from "./routes/product.js";
-
+import { notFound, errorHandler } from "./middlewares/error.js";
 connectMongoDB();
 const app = express();
 
@@ -23,6 +23,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/products", productRouter);
+app.use(notFound);
+app.use(errorHandler);
 
 
 
