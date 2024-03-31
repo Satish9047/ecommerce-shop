@@ -1,18 +1,26 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Product from "../models/products.js";
 
-//@desc     Fetch all  products
-//@route    GET /api/products
-//@access   Public
+/**
+ * @description     Fetch products
+ * @routes          GET /api/products
+ * @access          Public
+ * 
+ */
 const getProducts = asyncHandler(async (req, res) => {
     const products = await Product.find({});
     //console.log(products, "these are the product from database");
     res.json(products);
 });
 
-//@desc     Fetch a products
-//@route    GET /api/products/:id
-//@access   Public
+
+
+/**
+ * @description     Fetch a single products
+ * @routes          GET /api/products/:id
+ * @access          Public
+ * 
+ */
 const getProductById = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {
