@@ -1,9 +1,9 @@
+import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Rating from "../components/Rating";
 import { HTTP } from "../config/axios";
-import { Link } from "react-router-dom";
-import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState({});
