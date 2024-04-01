@@ -28,14 +28,16 @@ const cartSlice = createSlice({
         state.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
       );
       //Calculate shipping price (If order is  over 100$ then free, else 10$ shipping)
-      state.shippingPrice = addDecimals(state.itemsPrice > 100 ? 0 : 10);
+      state.shippingPrice = addDecimals(state.itemPrice > 100 ? 0 : 10);
 
       //Calculate tax price (15% tax)
-      state.taxPrice = addDecimals(Number(0.15 * state.itemsPrice).toFixed(2));
+      state.taxPrice = addDecimals(Number(0.15 * state.itemPrice).toFixed(2));
 
       //Calculate toal
       state.totalPrice = Number(
-        state.itemsPrice + Number(state.shippingPrice) + Number(state.taxPrice)
+        Number(state.itemPrice) +
+          Number(state.shippingPrice) +
+          Number(state.taxPrice)
       ).toFixed(2);
 
       //saving the state in localstorage
