@@ -31,7 +31,7 @@ const Cart = () => {
           </Message>
         ) : (
           <ListGroup variant="flush">
-            {cartItems.map((item) => {
+            {cartItems.map((item) => (
               <ListGroup.Item key={item._id}>
                 <Row>
                   <Col md={2}>
@@ -62,8 +62,8 @@ const Cart = () => {
                     </Button>
                   </Col>
                 </Row>
-              </ListGroup.Item>;
-            })}
+              </ListGroup.Item>
+            ))}
           </ListGroup>
         )}
       </Col>
