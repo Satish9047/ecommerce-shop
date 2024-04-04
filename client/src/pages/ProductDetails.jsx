@@ -1,12 +1,3 @@
-import {
-  Row,
-  Form,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 import Rating from "../components/Rating";
@@ -16,6 +7,15 @@ import Message from "../components/Message";
 import { useState } from "react";
 import { addToCart } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
+import {
+  Row,
+  Form,
+  Col,
+  Image,
+  ListGroup,
+  Card,
+  Button,
+} from "react-bootstrap";
 
 const ProductDetails = () => {
   const { id: productId } = useParams();
