@@ -30,7 +30,8 @@ const Cart = () => {
         <h1 style={{ marginBottom: "20px" }}>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Your cart is empty <Link to="/">Go Back</Link>
+            Your cart is empty
+            <Link to="/">Go Back</Link>
           </Message>
         ) : (
           <ListGroup variant="flush">
