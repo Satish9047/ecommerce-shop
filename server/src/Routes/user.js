@@ -18,8 +18,9 @@ userRoutes.post("/login", authUser);
 userRoutes.post("/logout", logoutUser);
 userRoutes.get("/profile", getUserProfile);
 userRoutes.put("/profile", updateUserProfile);
-userRoutes.get("/:id", getUserById);
-userRoutes.put(":/id", updateUser);
-userRoutes.delete(":/id", deleteUser);
+userRoutes
+  .get("/:id", getUserById)
+  .put("/:id", updateUser)
+  .delete("/:id", deleteUser);
 
 export default userRoutes;
