@@ -1,5 +1,5 @@
 import express from "express";
-const router = express.Router();
+const userRoutes = express.Router();
 import {
   authUser,
   registerUser,
@@ -12,14 +12,14 @@ import {
   updateUser,
 } from "../Controllers/user.js";
 
-router.get("/", getUsers);
-router.post("/", registerUser);
-router.post("/login", authUser);
-router.post("/logout", logoutUser);
-router.get("/profile", getUserProfile);
-router.put("/profile", updateUserProfile);
-router.get("/:id", getUserById);
-router.put(":/id", updateUser);
-router.delete(":/id", deleteUser);
+userRoutes.get("/", getUsers);
+userRoutes.post("/", registerUser);
+userRoutes.post("/login", authUser);
+userRoutes.post("/logout", logoutUser);
+userRoutes.get("/profile", getUserProfile);
+userRoutes.put("/profile", updateUserProfile);
+userRoutes.get("/:id", getUserById);
+userRoutes.put(":/id", updateUser);
+userRoutes.delete(":/id", deleteUser);
 
-export default router;
+export default userRoutes;
