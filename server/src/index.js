@@ -2,15 +2,18 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 
 import connectMongoDB from "./config/mongoDB.js";
 import productRoutes from "./routes/product.js";
 import userRoutes from "./routes/user.js";
 import { notFound, errorHandler } from "./middlewares/error.js";
+
 connectMongoDB();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use(
   cors({
