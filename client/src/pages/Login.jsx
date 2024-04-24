@@ -34,12 +34,7 @@ const Login = () => {
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
     } catch (error) {
-<<<<<<< HEAD
-      console.log(error);
-      toast.error(error?.data?.message || error.error);
-=======
       toast.error(error?.data?.message || error.message);
->>>>>>> 83460271e1f70f6a7d03b79198a521b641499e31
     }
   };
   return (
