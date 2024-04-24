@@ -15,7 +15,7 @@ import { protect, admin } from "../middlewares/auth.js";
 
 userRoutes.get("/", protect, admin, getUsers);
 userRoutes.post("/", registerUser);
-userRoutes.post("/login", authUser);
+userRoutes.post("/auth", authUser);
 userRoutes.post("/logout", logoutUser);
 userRoutes.get("/profile", protect, getUserProfile);
 userRoutes.put("/profile", protect, updateUserProfile);
