@@ -10,7 +10,8 @@ const Header = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
   const logoutHandler = () => {
-    console.log("logout");
+    localStorage.removeItem("userInfo");
+    window.location.reload();
   };
 
   return (
