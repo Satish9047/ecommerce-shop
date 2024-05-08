@@ -9,8 +9,11 @@ import productRoutes from "./routes/product.js";
 import userRoutes from "./routes/user.js";
 import { notFound, errorHandler } from "./middlewares/error.js";
 
+dotenv.config();
+
 connectMongoDB();
 const app = express();
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -21,8 +24,8 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(morgan("dev"));
-dotenv.config();
 
 const PORT = Number(process.env.PORT) || 8000;
 
