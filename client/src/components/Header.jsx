@@ -38,8 +38,8 @@ const Header = () => {
             <Navbar.Brand>
               <img
                 src={Logo}
-                height={35}
-                width={35}
+                height={40}
+                width={40}
                 alt="E-Shop"
                 className="me-2"
               />
