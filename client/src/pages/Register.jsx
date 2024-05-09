@@ -50,17 +50,19 @@ const Register = () => {
       <h1>Sign Up</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="name" className="my-3 ">
-          <Form.Label>Email</Form.Label>
+          <Form.Label>Name</Form.Label>
           <Form.Control
+            required
             type="text"
             placeholder="Enter Name"
-            value={email}
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </Form.Group>
         <Form.Group controlId="email" className="my-3 ">
           <Form.Label>Email</Form.Label>
           <Form.Control
+            required
             type="email"
             placeholder="Enter email"
             value={email}
@@ -70,6 +72,7 @@ const Register = () => {
         <Form.Group controlId="password" className="my-3 ">
           <Form.Label>Password</Form.Label>
           <Form.Control
+            required
             type="password"
             placeholder="Enter password"
             value={password}
@@ -79,9 +82,10 @@ const Register = () => {
         <Form.Group controlId="confirm-password" className="my-3 ">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
+            required
             type="password"
             placeholder="Re-Enter password"
-            value={password}
+            value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </Form.Group>
@@ -102,7 +106,7 @@ const Register = () => {
         <Col>
           already have account ?{" "}
           <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-            Register
+            Login
           </Link>
         </Col>
       </Row>
