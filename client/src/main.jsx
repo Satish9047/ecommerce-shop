@@ -12,6 +12,7 @@ import store from "./store/store.js";
 import Cart from "./pages/Cart.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
+import Shipping from "./pages/Shipping.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/shipping" element={<Shipping />} />
           </Route>
         </Routes>
       </BrowserRouter>
