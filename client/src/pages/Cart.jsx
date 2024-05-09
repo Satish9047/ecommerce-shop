@@ -3,6 +3,7 @@ import { FaTrash } from "react-icons/fa";
 import Message from "../components/Message";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../slices/cartSlice";
+import { useNavigate } from "react-router-dom";
 import {
   Row,
   Col,
@@ -17,6 +18,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  const navigate = useNavigate();
   const addToCartHandler = async (product, qty) => {
     dispatch(addToCart({ ...product, qty }));
   };
@@ -93,6 +95,7 @@ const Cart = () => {
                 type="button"
                 className="btn-block"
                 disabled={cartItems.length === 0}
+                onClick={() => navigate("/shipping")}
               >
                 Proceed To Checkout
               </Button>
