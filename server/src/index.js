@@ -8,6 +8,7 @@ import connectMongoDB from "./config/mongoDB.js";
 import productRoutes from "./routes/product.js";
 import userRoutes from "./routes/user.js";
 import { notFound, errorHandler } from "./middlewares/error.js";
+import orderRoutes from "./routes/order.js";
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/orders", orderRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
