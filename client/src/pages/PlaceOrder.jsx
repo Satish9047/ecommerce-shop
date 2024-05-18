@@ -4,15 +4,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import CheckoutSteps from "../components/CheckoutSteps";
 // import { Toast } from "react-toastify";
-import { useCreatOrderMutation } from "../slices/orderApiSlice";
+import { useCreateOrderMutation } from "../slices/orderApiSlice";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { clearCartItems } from "../slices/cartSlice";
+import { toast } from "react-toastify";
 
 const PlaceOrder = () => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
+
+  const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 
   useEffect(() => {
     if (!cart.shippingAddress) {
@@ -22,6 +25,23 @@ const PlaceOrder = () => {
     }
   }, [cart.paymentMethod, cart.shippingAddress, navigate]);
 
+  const placeOrderHandler = async () => {
+    try {
+      const res = await createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.cartItemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      }).unwrap();
+      dispatch(clearCartItems());
+      navigate(`/order/${res._id}`);
+    } catch (error) {
+      toast.error(error);
+    }
+  };
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
@@ -112,13 +132,19 @@ const PlaceOrder = () => {
               </ListGroup.Item>
 
               <ListGroup.Item>
+                {error && <Message variant="danger">{error}</Message>}
+              </ListGroup.Item>
+
+              <ListGroup.Item>
                 <Button
                   type="button"
                   className="btn-block"
                   disabled={cart.cartItems.length === 0}
+                  onClick={placeOrderHandler}
                 >
                   Place Order
                 </Button>
+                {isLoading && <Loader />}
               </ListGroup.Item>
             </ListGroup>
           </Card>
