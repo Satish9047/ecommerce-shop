@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import CheckoutSteps from "../components/CheckoutSteps";
-// import { Toast } from "react-toastify";
 import { useCreateOrderMutation } from "../slices/orderApiSlice";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -39,7 +38,7 @@ const PlaceOrder = () => {
       dispatch(clearCartItems());
       navigate(`/order/${res._id}`);
     } catch (error) {
-      toast.error(error);
+      toast.error(error?.data?.message || error.message);
     }
   };
   return (
@@ -67,7 +66,7 @@ const PlaceOrder = () => {
             <ListGroup.Item>
               <h2>Order Items</h2>
               {cart.cartItems.length === 0 ? (
-                <Message>Your cart is empty</Message>
+                <Message variant={error}>Your cart is empty</Message>
               ) : (
                 <ListGroup variant="flush">
                   {cart.cartItems.map((item, index) => (
@@ -132,7 +131,11 @@ const PlaceOrder = () => {
               </ListGroup.Item>
 
               <ListGroup.Item>
-                {error && <Message variant="danger">{error}</Message>}
+                {error && (
+                  <Message variant="danger">
+                    {error.data?.message || error.message}
+                  </Message>
+                )}
               </ListGroup.Item>
 
               <ListGroup.Item>

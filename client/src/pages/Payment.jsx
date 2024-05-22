@@ -26,7 +26,7 @@ const Payment = () => {
     navigate("/placeorder");
   };
 
-  console.log(paymentMethod);
+  // console.log(paymentMethod);
   return (
     <FormContainer>
       <CheckoutSteps step1 step2 step3 />
