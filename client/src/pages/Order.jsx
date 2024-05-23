@@ -21,7 +21,7 @@ const Order = () => {
     error,
   } = useGetOrderDetailsQuery(orderId);
 
-  //   console.log(order);
+  console.log(order);
 
   return <div>order page</div>;
 };
