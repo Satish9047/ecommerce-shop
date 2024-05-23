@@ -30,7 +30,7 @@ const PlaceOrder = () => {
         orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
         paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.cartItemsPrice,
+        itemsPrice: cart.itemPrice,
         shippingPrice: cart.shippingPrice,
         taxPrice: cart.taxPrice,
         totalPrice: cart.totalPrice,
