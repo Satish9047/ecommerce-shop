@@ -16,6 +16,7 @@ import Shipping from "./pages/Shipping.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import Payment from "./pages/Payment.jsx";
 import PlaceOrder from "./pages/PlaceOrder.jsx";
+import Order from "./pages/Order.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
@@ -32,6 +33,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <Route path="/shipping" element={<Shipping />} />
               <Route path="/payment" element={<Payment />} />
               <Route path="/placeorder" element={<PlaceOrder />} />
+              <Route path="/order/:id" element={<Order />} />
             </Route>
           </Route>
         </Routes>
