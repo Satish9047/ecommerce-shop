@@ -8,7 +8,6 @@ import Order from "../models/order.js";
  *
  */
 const addOrderItems = asyncHandler(async (req, res) => {
-  console.log("i got this");
   const {
     orderItems,
     shippingAddress,
