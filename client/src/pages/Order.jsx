@@ -115,6 +115,8 @@ const Order = () => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
+              {/* pay order placeholder */}
+              {/* mark as delivered placeholder*/}
             </ListGroup>
           </Card>
         </Col>
