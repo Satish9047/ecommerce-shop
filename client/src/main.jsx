@@ -17,27 +17,30 @@ import PrivateRoute from "./components/PrivateRoute.jsx";
 import Payment from "./pages/Payment.jsx";
 import PlaceOrder from "./pages/PlaceOrder.jsx";
 import Order from "./pages/Order.jsx";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />}>
-            <Route index={true} element={<Home />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+      <PayPalScriptProvider>
+        <BrowserRouter deferLoading={true}>
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route index={true} element={<Home />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
 
-            <Route path="" element={<PrivateRoute />}>
-              <Route path="/shipping" element={<Shipping />} />
-              <Route path="/payment" element={<Payment />} />
-              <Route path="/placeorder" element={<PlaceOrder />} />
-              <Route path="/order/:id" element={<Order />} />
+              <Route path="" element={<PrivateRoute />}>
+                <Route path="/shipping" element={<Shipping />} />
+                <Route path="/payment" element={<Payment />} />
+                <Route path="/placeorder" element={<PlaceOrder />} />
+                <Route path="/order/:id" element={<Order />} />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </PayPalScriptProvider>
     </Provider>
   </React.StrictMode>
 );
