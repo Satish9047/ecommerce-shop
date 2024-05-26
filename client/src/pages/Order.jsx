@@ -1,4 +1,15 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import {
+  useGetOrderDetailsQuery,
+  usePayOrderMutation,
+  useGetPayPalClientIdQuery,
+} from "../slices/orderApiSlice";
 import {
   Row,
   Col,
@@ -8,17 +19,6 @@ import {
   Button,
   Card,
 } from "react-bootstrap";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import {
-  useGetOrderDetailsQuery,
-  usePayOrderMutation,
-  useGetPayPalClientIdQuery,
-} from "../slices/orderApiSlice";
-import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
 
 const Order = () => {
   const { id: orderId } = useParams();
@@ -56,7 +56,7 @@ const Order = () => {
         }
       }
     }
-  }, [order, paypal]);
+  }, [order, paypal, paypalDispatch, errorPayPal, loadingPayPal]);
 
   return isLoading ? (
     <Loader />
