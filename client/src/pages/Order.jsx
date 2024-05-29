@@ -10,15 +10,7 @@ import {
   usePayOrderMutation,
   useGetPayPalClientIdQuery,
 } from "../slices/orderApiSlice";
-import {
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Form,
-  Button,
-  Card,
-} from "react-bootstrap";
+import { Row, Col, ListGroup, Image, Button, Card } from "react-bootstrap";
 
 const Order = () => {
   const { id: orderId } = useParams();
@@ -69,9 +61,29 @@ const Order = () => {
       }
     });
   }
-  function onApproveTest() {}
-  function onError() {}
-  function createOrder() {}
+  async function onApproveTest() {
+    await payOrder({ orderId, details: { payer: {} } });
+    refetch();
+    toast.success("Order paid successfully");
+  }
+  function onError(error) {
+    toast.error(error.message);
+  }
+  function createOrder(data, actions) {
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            amount: {
+              value: order.totalPrice,
+            },
+          },
+        ],
+      })
+      .then((orderId) => {
+        return orderId;
+      });
+  }
 
   return isLoading ? (
     <Loader />
@@ -97,7 +109,7 @@ const Order = () => {
                 {order.shippingAddress.postalCode},{" "}
                 {order.shippingAddress.country}
               </p>
-              <p>
+              <div>
                 {order.isDelivered ? (
                   <Message variant="success">
                     Delivered on {order.deliveredAt}
@@ -105,7 +117,7 @@ const Order = () => {
                 ) : (
                   <Message variant="danger">Not Delivered</Message>
                 )}
-              </p>
+              </div>
             </ListGroup.Item>
 
             <ListGroup.Item>
@@ -115,7 +127,7 @@ const Order = () => {
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
-                <Message variant={"success"}>Paid</Message>
+                <Message variant={"success"}>Paid on {order.paidAt}</Message>
               ) : (
                 <Message variant={"danger"}>Not Paid</Message>
               )}
