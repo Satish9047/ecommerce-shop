@@ -58,6 +58,11 @@ const Order = () => {
     }
   }, [order, paypal, paypalDispatch, errorPayPal, loadingPayPal]);
 
+  function onApprove() {}
+  function onApproveTest() {}
+  function onError() {}
+  function createOrder() {}
+
   return isLoading ? (
     <Loader />
   ) : error ? (
@@ -153,6 +158,30 @@ const Order = () => {
                 </Row>
               </ListGroup.Item>
               {/* pay order placeholder */}
+              {!order.isPaid && (
+                <ListGroup.Item>
+                  {loadingPay && <Loader />}
+                  {isPending ? (
+                    <Loader />
+                  ) : (
+                    <div>
+                      <Button
+                        onClick={onApproveTest}
+                        style={{ marginBottom: "10px" }}
+                      >
+                        Test Pay Order
+                      </Button>
+                      <div>
+                        <PayPalButtons
+                          createOrder={createOrder}
+                          onApprove={onApprove}
+                          onError={onError}
+                        ></PayPalButtons>
+                      </div>
+                    </div>
+                  )}
+                </ListGroup.Item>
+              )}
               {/* mark as delivered placeholder*/}
             </ListGroup>
           </Card>
