@@ -58,7 +58,17 @@ const Order = () => {
     }
   }, [order, paypal, paypalDispatch, errorPayPal, loadingPayPal]);
 
-  function onApprove() {}
+  function onApprove(data, action) {
+    return action.order.capture().then(async function (details) {
+      try {
+        await payOrder({ orderId, details });
+        refetch();
+        toast.success("Order paid successfully");
+      } catch (error) {
+        toast.error(error?.data?.message || error.message);
+      }
+    });
+  }
   function onApproveTest() {}
   function onError() {}
   function createOrder() {}
