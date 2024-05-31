@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Message from "../components/Message";
@@ -28,7 +28,7 @@ const Order = () => {
     isLoading: loadingPayPal,
     error: errorPayPal,
   } = useGetPayPalClientIdQuery();
-  const { userInfo } = useSelector((state) => state.auth);
+  // const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!errorPayPal && !loadingPayPal && paypal.clientId) {
@@ -62,6 +62,7 @@ const Order = () => {
     });
   }
   async function onApproveTest() {
+    console.log("pay order test");
     await payOrder({ orderId, details: { payer: {} } });
     refetch();
     toast.success("Order paid successfully");
