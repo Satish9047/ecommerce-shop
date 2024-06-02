@@ -50,7 +50,7 @@ const profile = () => {
   return (
     <Row>
       <Col md={3}>
-        <h2>User Profile</h2>
+        <h2>My Profile</h2>
 
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name" className="my-2">
