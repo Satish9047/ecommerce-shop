@@ -18,6 +18,8 @@ import Payment from "./pages/Payment.jsx";
 import PlaceOrder from "./pages/PlaceOrder.jsx";
 import Order from "./pages/Order.jsx";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import Profile from "./pages/profile.jsx";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
@@ -36,6 +38,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/payment" element={<Payment />} />
                 <Route path="/placeorder" element={<PlaceOrder />} />
                 <Route path="/order/:id" element={<Order />} />
+                <Route path="/profile" element={<Profile />} />
               </Route>
             </Route>
           </Routes>
