@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Table, Row, Col, Button, Form } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { usePorfileMutation } from "../slices/userApiSlice";
 import { toast } from "react-toastify";
@@ -18,16 +17,34 @@ const profile = () => {
   const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state) => state.auth);
+  const [updateProfile, { isLoading: loadingUpdateProfile }] =
+    usePorfileMutation();
+
   useEffect(() => {
     if (userInfo) {
       setName(userInfo.name);
       setEmail(userInfo.email);
     }
-  }, [userInfo.name, userInfo.email]);
+  }, [userInfo, userInfo.name, userInfo.email]);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("submitHandler");
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+    } else {
+      try {
+        const res = await updateProfile({
+          _id: userInfo._id,
+          name,
+          email,
+          password,
+        }).unwrap();
+        dispatch(setCredentials(res));
+        toast.success("Profile Updated");
+      } catch (error) {
+        toast.error(error?.data?.Message || error.error);
+      }
+    }
   };
 
   return (
@@ -65,21 +82,22 @@ const profile = () => {
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
+
+          <Form.Group controlId="confirmPassword" className="my-2">
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control
+              type="Password"
+              placeholder="Re-Enter Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
+          <Button type="submit" variant="primary" className="my-2">
+            Update
+          </Button>
+          {loadingUpdateProfile && <Loader />}
         </Form>
-
-        <Form.Group controlId="confirmPassword" className="my-2">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="Password"
-            placeholder="Re-Enter Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-
-        <Button type="submit" variant="primary" className="my-2">
-          Update
-        </Button>
       </Col>
       <Col md={9}>Column 2</Col>
     </Row>
