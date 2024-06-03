@@ -1,12 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Table, Row, Col, Button, Form } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+// import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import { usePorfileMutation } from "../slices/userApiSlice";
 import { toast } from "react-toastify";
+import Message from "../components/Message";
 import { setCredentials } from "../slices/authSlice";
+import { useGetMyOrdersQuery } from "../slices/orderApiSlice";
+// import { FaTime } from "react-icons/fa";
 
 const profile = () => {
   const [name, setName] = useState("");
@@ -19,6 +22,8 @@ const profile = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const [updateProfile, { isLoading: loadingUpdateProfile }] =
     usePorfileMutation();
+
+  const { data: orders, isLoading, error } = useGetMyOrdersQuery();
 
   useEffect(() => {
     if (userInfo) {
@@ -99,7 +104,48 @@ const profile = () => {
           {loadingUpdateProfile && <Loader />}
         </Form>
       </Col>
-      <Col md={9}></Col>
+      <Col md={9}>
+        <h2>My Orders</h2>
+        {isLoading ? (
+          <Loader />
+        ) : error ? (
+          <Message variant="danger">
+            {error?.data?.message || error.error}
+          </Message>
+        ) : (
+          <Table striped hover responsive className="table-sm">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>TOTAL</th>
+                <th>PAID</th>
+                <th>DELIVERED</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order._id}>
+                  <td>{order._id}</td>
+                  <td>{order.createdAt.substring(0, 10)}</td>\
+                  <td>${order.totalPrice}</td>
+                  <td>
+                    {order.isPaid
+                      ? order.paidAt.substring(0, 10)
+                      : "not delivered"}
+                  </td>
+                  <td>
+                    {order.isDelivered
+                      ? order.deliveredAt.substring(0, 10)
+                      : "not delivered"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        )}
+      </Col>
     </Row>
   );
 };
