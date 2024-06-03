@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Table, Row, Col, Button, Form } from "react-bootstrap";
-// import { LinkContainer } from "react-router-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import { usePorfileMutation } from "../slices/userApiSlice";
@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import Message from "../components/Message";
 import { setCredentials } from "../slices/authSlice";
 import { useGetMyOrdersQuery } from "../slices/orderApiSlice";
-// import { FaTime } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 
 const profile = () => {
   const [name, setName] = useState("");
@@ -24,6 +24,7 @@ const profile = () => {
     usePorfileMutation();
 
   const { data: orders, isLoading, error } = useGetMyOrdersQuery();
+  // console.log(orders);
 
   useEffect(() => {
     if (userInfo) {
@@ -131,14 +132,25 @@ const profile = () => {
                   <td>{order.createdAt.substring(0, 10)}</td>\
                   <td>${order.totalPrice}</td>
                   <td>
-                    {order.isPaid
-                      ? order.paidAt.substring(0, 10)
-                      : "not delivered"}
+                    {order.isPaid ? (
+                      order.paidAt.substring(0, 10)
+                    ) : (
+                      <FaTimes style={{ color: "red" }} />
+                    )}
                   </td>
                   <td>
-                    {order.isDelivered
-                      ? order.deliveredAt.substring(0, 10)
-                      : "not delivered"}
+                    {order.isDelivered ? (
+                      order.deliveredAt.substring(0, 10)
+                    ) : (
+                      <FaTimes style={{ color: "red" }} />
+                    )}
+                  </td>
+                  <td>
+                    <LinkContainer to={`/order/${order._id}`}>
+                      <Button className="btn-sm" variant="light">
+                        Details
+                      </Button>
+                    </LinkContainer>
                   </td>
                 </tr>
               ))}
