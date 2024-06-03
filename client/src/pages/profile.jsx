@@ -99,7 +99,7 @@ const profile = () => {
           {loadingUpdateProfile && <Loader />}
         </Form>
       </Col>
-      <Col md={9}>Column 2</Col>
+      <Col md={9}></Col>
     </Row>
   );
 };
