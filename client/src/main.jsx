@@ -19,7 +19,7 @@ import PlaceOrder from "./pages/PlaceOrder.jsx";
 import Order from "./pages/Order.jsx";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Profile from "./pages/profile.jsx";
-import AdminRoute from "./components/adminRoute.jsx";
+import AdminRoute from "./components/AdminRoute.jsx";
 import OrderList from "./pages/admin/OrderList.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
