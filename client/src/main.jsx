@@ -19,6 +19,8 @@ import PlaceOrder from "./pages/PlaceOrder.jsx";
 import Order from "./pages/Order.jsx";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Profile from "./pages/profile.jsx";
+import AdminRoute from "./components/adminRoute.jsx";
+import OrderList from "./pages/orderList.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -27,18 +29,25 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <BrowserRouter deferLoading={true}>
           <Routes>
             <Route path="/" element={<App />}>
+              {/* public route */}
               <Route index={true} element={<Home />} />
               <Route path="/product/:id" element={<ProductDetails />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
 
+              {/* Private Route */}
               <Route path="" element={<PrivateRoute />}>
                 <Route path="/shipping" element={<Shipping />} />
                 <Route path="/payment" element={<Payment />} />
                 <Route path="/placeorder" element={<PlaceOrder />} />
                 <Route path="/order/:id" element={<Order />} />
                 <Route path="/profile" element={<Profile />} />
+              </Route>
+
+              {/* admin Routes */}
+              <Route path="" element={<AdminRoute />}>
+                <Route path="/admin/orderlist" element={<OrderList />} />
               </Route>
             </Route>
           </Routes>
