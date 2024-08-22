@@ -19,7 +19,7 @@
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
+   git clone https://github.com/Satish9047/ecommerce-shop.git
 
 2. **Install Server Dependencies:**
    Navigate to the server directory and install the dependencies:
