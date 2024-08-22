@@ -50,11 +50,12 @@
 5. **Running the Application**
    Run Database Seeder
    If you need to import or destroy data in your database, you can run the following commands:
-   a. Import data:
-       pnpm run data:import
-  
-   b. Destroy data:
-       pnpm run data:destroy
+   
+       a. Import data:
+          pnpm run data:import
+       b. Destroy data:
+          pnpm run data:destroy
+   
 7. **Start the Application**
    To start both the client and server in development mode, run the following command from the server directory:
    ```bash
