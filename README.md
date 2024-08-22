@@ -35,17 +35,17 @@
 
 4. **Set Up Environment Variables**
    In the server directory, create a .env file by copying the contents of .env.example:
-   ```bash
-   cd ../server
-   cp .env.example .env
+   
+       cd ../server
+       cp .env.example .env
 
-  Open the .env file and replace the placeholder values with your actual configuration:
+   Open the .env file and replace the placeholder values with your actual configuration:
   
-     NODE_ENV=development
-     PORT=8080
-     MONGOD_CONNECTION_STRING=your_mongodb_connection_string
-     JWT_SECRET=your_jwt_secret
-     PAYPAL_CLIENT_ID=your_paypal_client_id
+       NODE_ENV=development
+       PORT=8080
+       MONGOD_CONNECTION_STRING=your_mongodb_connection_string
+       JWT_SECRET=your_jwt_secret
+       PAYPAL_CLIENT_ID=your_paypal_client_id
 
 5. **Running the Application**
    Run Database Seeder
@@ -58,9 +58,10 @@
    
 7. **Start the Application**
    To start both the client and server in development mode, run the following command from the server directory:
-   ```bash
-   pnpm run pre
-  This will start the server on the specified port and the client on its development server.
+   
+         pnpm run pre
+
+   This will start the server on the specified port and the client on its development server.
 
 8. **Access the Application**
    The client should be accessible at http://localhost:3000 (or another port if configured differently).
